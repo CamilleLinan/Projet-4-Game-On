@@ -20,14 +20,15 @@ closeBtn.addEventListener("click", closeModal);
 function launchModal() {
   modalbg.style.display = "block";
 }
-
 function closeModal() {
   modalbg.style.display = "none";
 }
 
+
 // FORM
+const form = document.getElementById("form");
+
 // Input
-const form = document.querySelectorAll('.form-data');
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
@@ -36,121 +37,129 @@ const quantity = document.getElementById("quantity");
 const checkbox1 = document.getElementById("checkbox1");
 
 // Error Input
-const firstnameError = document.querySelector("#error-firstname");
-const lastnameError = document.querySelector("#error-lastname");
-const emailError = document.querySelector("#error-email");
-const birthdateError = document.querySelector("#error-birthdate");
-const quantityError = document.querySelector("#error-quantity");
-const checkboxError = document.querySelector("#error-checkbox");
+const firstnameError = document.getElementById("error-firstname");
+const lastnameError = document.getElementById("error-lastname");
+const emailError = document.getElementById("error-email");
+const birthdateError = document.getElementById("error-birthdate");
+const quantityError = document.getElementById("error-quantity");
+const checkboxError = document.getElementById("error-checkbox");
 
+// Regex
 const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/i;
 const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
 
-const validFirstName = () => {
-  if (firstName.value === "") {
-    firstnameError.textContent = "Veuillez saisir votre prénom.";
+// Add error message if the Inputs have any error
+const validFirstName = function(inputFirstName) {
+  if (inputFirstName.value.trim() === "" || inputFirstName.value.length < 2) {
+    firstnameError.textContent = "Veuillez saisir votre prénom (2 caractères minimum).";
     firstName.classList.add("invalid");
-  } else if (!nameRegex.test(firstName.value)) {
-    firstnameError.textContent = "Veuillez saisir un prénom valide.";
+    return false;
+  } else if (!nameRegex.test(inputFirstName.value)) {
+    firstnameError.textContent = "Veuillez saisir un prénom valide, sans chiffre, ni caractère spécial.";
     firstName.classList.add("invalid");
+    return false;
   } else {
     firstnameError.textContent = "";
     firstName.classList.remove("invalid");
-    return true
+    return true;
   }
 }
 
-const validLastName = () => {
-  if (lastName.value.trim() === "") {
-    lastnameError.textContent = "Veuillez saisir votre nom.";
+const validLastName = function(inputLastName) {
+  if (inputLastName.value.trim() === "" || inputLastName.value.length < 2) {
+    lastnameError.textContent = "Veuillez saisir votre nom (2 caractères minimum).";
     lastName.classList.add("invalid");
-    return false
-  } else if (!nameRegex.test(lastName.value)) {
-    lastnameError.textContent = "Veuillez saisir un nom valide.";
+    return false;
+  } else if (!nameRegex.test(inputLastName.value)) {
+    lastnameError.textContent = "Veuillez saisir un nom valide, sans chiffre, ni caractère spécial.";
     lastName.classList.add("invalid");
-    return false
+    return false;
   } else {
     lastnameError.textContent = "";
     lastName.classList.remove("invalid");
-    return true
+    return true;
   }
 }
 
-const validEmail = () => {
-  if (email.value.trim() === "") {
-    emailError.textContent = "Veuillez saisir votre adresse e-mail.";
-    email.classList.add("invalid");
-    return false
-  } else if (!emailRegex.test(email.value)) {
+const validEmail = function(inputEmail) {
+  if (inputEmail.value.trim() === "" || !emailRegex.test(email.value)) {
     emailError.textContent = "Veuillez saisir une adresse e-mail valide.";
     email.classList.add("invalid");
-    return false
+    return false;
   } else {
     emailError.textContent = "";
     email.classList.remove("invalid");
-    return true
+    return true;
   }
 }
 
-const validBirthdate = () => {
-  if (birthdate.value.trim() === "") {
+const validBirthdate = function(inputBirthdate) {
+  if (inputBirthdate.value.trim() === "") {
     birthdateError.textContent = "Veuillez saisir votre date de naissance.";
     birthdate.classList.add("invalid");
-    return false
+    return false;
   } else {
     birthdateError.textContent = "";
     birthdate.classList.remove("invalid");
-    return true
+    return true;
   }
 }
 
-const validQty = () => {
-  if (quantity.value < 0 || quantity.value > 99) {
+const validQty = function(inputQty) {
+  if (inputQty.value < 0 || inputQty.value > 99) {
     quantityError.textContent = "Veuillez saisir une valeur entre 0 et 99.";
     quantity.classList.add("invalid");
-    return false
+    return false;
   } else {
     quantityError.textContent = "";
     quantity.classList.remove("invalid");
-    return true
+    return true;
   }
 }
 
-const validCheckbox = () => {
-  if (!checkbox1.checked) {
+const validCheckbox = function(inputCheckbox) {
+  if (!inputCheckbox.checked) {
     checkboxError.textContent = "Veuillez accepter les conditions d'utilisation.";
     checkbox1.classList.add("invalid");
-    return false
+    return false;
   } else {
     checkboxError.textContent = "";
     checkbox1.classList.remove("invalid");
-    return true
+    return true;
   }
 }
 
-firstName.addEventListener('change', validFirstName);
-lastName.addEventListener('change', validLastName);
-email.addEventListener('change', validEmail);
-birthdate.addEventListener('change', validBirthdate);
-quantity.addEventListener('change', validQty);
-checkbox1.addEventListener('change', validCheckbox);
+// Listen changes in Input
+firstName.addEventListener('change', function() {
+  validFirstName(this);
+});
+lastName.addEventListener('change', function() {
+  validLastName(this);
+});
+email.addEventListener('change', function() {
+  validEmail(this)
+});
+birthdate.addEventListener('change', function() {
+  validBirthdate(this);
+});
+quantity.addEventListener('change', function() {
+  validQty(this);
+});
+checkbox1.addEventListener('change', function() {
+  validCheckbox(this);
+});
 
-function validate(e) {
-  e.preventDefault();
-
-  const isFirstNameValid = validFirstName(true);
-  const isLastNameValid = validLastName();
-  const isBirthdateValid = validBirthdate();
-  const isQtyValid = validQty();
-  const isCheckboxValid = validCheckbox();
-
-  const isFormValid = isFirstNameValid && isLastNameValid && isBirthdateValid && isQtyValid && isCheckboxValid;
-
-  if (isFormValid) {
+// Submit Form
+const validate = () => {
+  if (validFirstName(firstName) && validLastName(lastName) && validEmail(email) && validBirthdate(birthdate) && validQty(quantity) && validCheckbox(checkbox1)) {
     alert('Inscription prise en compte !');
     closeModal();
   } else {
-    const errorMessage = document.getElementById('error-message');
-    errorMessage.textContent = 'Veuillez remplir tous les champs obligatoires correctement.';
+    alert('Veuillez renseigner tous les champs obligatoires et accepter les conditions d\'utilisation.');
   }
 }
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  validate();
+})
