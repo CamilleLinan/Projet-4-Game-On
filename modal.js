@@ -94,8 +94,15 @@ const validEmail = function(inputEmail) {
 }
 
 const validBirthdate = function(inputBirthdate) {
+  const birthdateUser = moment(inputBirthdate.value);
+  const age = moment().diff(birthdateUser, 'years');
+
   if (inputBirthdate.value.trim() === "") {
     birthdateError.textContent = "Veuillez saisir votre date de naissance.";
+    birthdate.classList.add("invalid");
+    return false;
+  } else if (age < 18) {
+    birthdateError.textContent = "Vous devez être majeur pour vous inscrire.";
     birthdate.classList.add("invalid");
     return false;
   } else {
@@ -153,6 +160,7 @@ checkbox1.addEventListener('change', function() {
 const validate = () => {
   if (validFirstName(firstName) && validLastName(lastName) && validEmail(email) && validBirthdate(birthdate) && validQty(quantity) && validCheckbox(checkbox1)) {
     alert('Inscription prise en compte !');
+    form.reset();
     closeModal();
   } else {
     alert('Veuillez renseigner tous les champs obligatoires et accepter les conditions d\'utilisation.');

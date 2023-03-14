@@ -109,9 +109,6 @@ main {
   padding-right: 2vw;
   margin: 1px 20px 15px;
   border-radius: 2rem;
-  text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -218,6 +215,12 @@ input {
   font-size: 16px;
 }
 
+#error-checkbox {
+  text-align: start;
+  padding: 0;
+  margin: -10px 0 8px 36px;
+}
+
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
@@ -246,7 +249,6 @@ input[data-error]::after {
 .checkbox2-label {
   position: relative;
   margin-left: 36px;
-  font-size: 12px;
   font-weight: normal;
 }
 .checkbox-label .checkbox-icon,
@@ -260,7 +262,7 @@ input[data-error]::after {
   white-space: nowrap;
   position: absolute;
   left: -30px;
-  top: -1px;
+  top: 1px;
   transition: 0.3s;
 }
 .checkbox-label .checkbox-icon::after,
