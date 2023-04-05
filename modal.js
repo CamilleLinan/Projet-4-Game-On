@@ -12,9 +12,15 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const closeBtn = document.querySelector(".close");
 
+const modalBody = document.querySelector(".modal-body-form");
+const modalBodyConfirm = document.querySelector(".modal-body-confirm"); 
+// const modalbgConfirm = document.querySelector(".bground-confirm");
+const closeModalBtn = document.querySelector(".btn-modal-confirm");
+
 // launch/close modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 closeBtn.addEventListener("click", closeModal);
+closeModalBtn.addEventListener("click", closeModal);
 
 // launch/close modal form
 function launchModal() {
@@ -23,6 +29,15 @@ function launchModal() {
 function closeModal() {
   modalbg.style.display = "none";
 }
+
+const closeForm = () => {
+  modalBody.style.display = "none";
+  modalBodyConfirm.style.display = "block";
+}
+
+// const closeModalConfirm = () => {
+//   modalbgConfirm.style.display = "none";
+// }
 
 
 // FORM
@@ -94,8 +109,9 @@ const validEmail = function(inputEmail) {
 }
 
 const validBirthdate = function(inputBirthdate) {
-  const birthdateUser = moment(inputBirthdate.value);
-  const age = moment().diff(birthdateUser, 'years');
+  const birthdateUser = new Date(inputBirthdate.value);
+  const now = new Date();
+  const age = now.getFullYear() - birthdateUser.getFullYear();
 
   if (inputBirthdate.value.trim() === "") {
     birthdateError.textContent = "Veuillez saisir votre date de naissance.";
@@ -156,18 +172,26 @@ checkbox1.addEventListener('change', function() {
   validCheckbox(this);
 });
 
-// Submit Form
-const validate = () => {
+// Valid form
+const validForm = () => {
   if (validFirstName(firstName) && validLastName(lastName) && validEmail(email) && validBirthdate(birthdate) && validQty(quantity) && validCheckbox(checkbox1)) {
-    alert('Inscription prise en compte !');
-    form.reset();
-    closeModal();
+    return true;
   } else {
-    alert('Veuillez renseigner tous les champs obligatoires et accepter les conditions d\'utilisation.');
+    return false;
+  }
+}
+
+// If form is Valid submit
+const handleSubmit = () => {
+  if (validForm() === true) {
+    form.reset();
+    closeForm();
+  } else {
+    validCheckbox(checkbox1);
   }
 }
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  validate();
+  handleSubmit();
 })
