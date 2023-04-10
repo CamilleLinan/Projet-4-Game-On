@@ -1,9 +1,9 @@
+const topNav = document.getElementById("myTopnav")
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+  if (topNav.className === "topnav") {
+    topNav.className += " responsive";
   } else {
-    x.className = "topnav";
+    topNav.className = "topnav";
   }
 }
 
@@ -14,7 +14,6 @@ const closeBtn = document.querySelector(".close");
 
 const modalBody = document.querySelector(".modal-body-form");
 const modalBodyConfirm = document.querySelector(".modal-body-confirm"); 
-// const modalbgConfirm = document.querySelector(".bground-confirm");
 const closeModalBtn = document.querySelector(".btn-modal-confirm");
 
 // launch/close modal event
@@ -25,6 +24,9 @@ closeModalBtn.addEventListener("click", closeModal);
 // launch/close modal form
 function launchModal() {
   modalbg.style.display = "block";
+  if (topNav.className === "topnav responsive") {
+    editNav();
+  }
 }
 function closeModal() {
   modalbg.style.display = "none";
@@ -34,11 +36,6 @@ const closeForm = () => {
   modalBody.style.display = "none";
   modalBodyConfirm.style.display = "block";
 }
-
-// const closeModalConfirm = () => {
-//   modalbgConfirm.style.display = "none";
-// }
-
 
 // FORM
 const form = document.getElementById("form");
