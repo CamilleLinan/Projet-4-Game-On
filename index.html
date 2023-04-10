@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     
-    <link rel="stylesheet" href="./styles/modal.css" />
+    <link rel="stylesheet" href="./styles/modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-    href="https://fonts.googleapis.com/css?family=DM+Sans"
-    rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
@@ -19,7 +16,7 @@
   <body>
     <header class="topnav" id="myTopnav">
       <div class="header-logo">
-        <img alt="logo" src="./styles/img/Logo.png" width="auto" height="auto" />
+        <img alt="game-on-logo" src="./styles/img/Logo.png">
       </div>
       
       <nav class="main-navbar">  
@@ -51,7 +48,7 @@
         </div>
 
         <div class="hero-img">
-          <img src="./styles/img/bg_img.jpg" alt="img" />
+          <img src="./styles/img/bg_img.jpg" alt="femme-jouant-aux-jeux-videos">
         </div>
 
         <button class="btn-signup modal-btn">
@@ -59,7 +56,7 @@
         </button>
       </section>
 
-      <section class="bground">
+      <div class="bground">
         <div class="content">
           <span class="close"></span>
           <div class="modal-body modal-body-form">
@@ -73,7 +70,7 @@
                     name="first"
                     minlength="2"
                     required
-                  />
+                  >
                   <span id="error-firstname" class="text-error"></span>
               </div>
 
@@ -85,7 +82,7 @@
                     id="last"
                     name="last"
                     required
-                  />
+                  >
                   <span id="error-lastname" class="text-error"></span>
               </div>
 
@@ -97,7 +94,7 @@
                     id="email"
                     name="email"
                     required
-                  />
+                  >
                   <span id="error-email" class="text-error"></span>
               </div>
               
@@ -109,21 +106,21 @@
                     id="birthdate"
                     name="birthdate"
                     required
-                  />
+                  >
                   <span id="error-birthdate" class="text-error"></span>
               </div>
 
               <div class="formData">
                 <label for="quantity" class="text-label">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input 
-                  class="text-control" 
-                  type="number" 
-                  id="quantity" 
-                  name="quantity" 
-                  min="0" 
-                  max="99"
-                  placeholder="0"
-                />
+                  <input 
+                    class="text-control" 
+                    type="number" 
+                    id="quantity" 
+                    name="quantity" 
+                    min="0" 
+                    max="99"
+                    placeholder="0"
+                  >
                 <span id="error-quantity" class="text-error"></span>
               </div>
               
@@ -136,7 +133,7 @@
                     name="location"
                     value="New York"
                     checked
-                  />
+                  >
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span> New York
                 </label>
@@ -147,7 +144,7 @@
                   id="location2"
                   name="location"
                   value="San Francisco"
-                />
+                >
                 <label class="checkbox-label" for="location2">
                   <span class="checkbox-icon"></span> San Francisco
                 </label>
@@ -158,7 +155,7 @@
                   id="location3"
                   name="location"
                   value="Seattle"
-                />
+                >
                 <label class="checkbox-label" for="location3">
                   <span class="checkbox-icon"></span> Seattle
                 </label>
@@ -169,7 +166,7 @@
                   id="location4"
                   name="location"
                   value="Chicago"
-                />
+                >
                 <label class="checkbox-label" for="location4">
                   <span class="checkbox-icon"></span> Chicago
                 </label>
@@ -180,7 +177,7 @@
                   id="location5"
                   name="location"
                   value="Boston"
-                />
+                >
                 <label class="checkbox-label" for="location5">
                   <span class="checkbox-icon"></span> Boston
                 </label>
@@ -191,7 +188,7 @@
                   id="location6"
                   name="location"
                   value="Portland"
-                />
+                >
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span> Portland
                 </label>
@@ -202,7 +199,7 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                />
+                >
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span> 
                   J'ai lu et accepté les conditions d'utilisation.
@@ -213,7 +210,7 @@
                   class="checkbox-input" 
                   type="checkbox" 
                   id="checkbox2"
-                />
+                >
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span> 
                   Je souhaite être prévenu des prochains évènements.
@@ -229,16 +226,7 @@
             <button class="button btn-submit btn-modal-confirm">FERMER</button>
           </div>
         </div>
-      </section>
-
-      <!-- <section class="bground-confirm">
-        <div class="content content-confirm">
-          <div class="modal-body">
-            <p class="modal-confirm-content">Inscription prise en compte !</p>
-            <button class="button btn-submit btn-modal-confirm">FERMER</button>
-          </div>
-        </div>
-      </section> -->
+      </div>
     </main>
 
     <footer>
