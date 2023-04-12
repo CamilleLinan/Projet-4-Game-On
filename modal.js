@@ -30,6 +30,8 @@ function launchModal() {
 }
 function closeModal() {
   modalbg.style.display = "none";
+  modalBody.style.display = "block";
+  modalBodyConfirm.style.display = "none";
 }
 
 const closeForm = () => {
